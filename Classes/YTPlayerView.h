@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
  * Callback invoked when setting up the webview to allow custom colours so it fits in
  * with app color schemes. If a transparent view is required specify clearColor and
  * the code will handle the opacity etc.
- * 
+ *
  * @param playerView The YTPlayerView instance where the error has occurred.
  * @return A color object that represents the background color of the webview.
  */
@@ -118,13 +118,13 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
  *
  * The default implementation does not display any custom loading views so the player will display
  * a blank view with a background color of (-playerViewPreferredWebViewBackgroundColor:).
- * 
- * Note that the custom loading view WILL NOT be displayed after iframe is loaded. It will be 
+ *
+ * Note that the custom loading view WILL NOT be displayed after iframe is loaded. It will be
  * handled by YouTube iframe API. This callback is just intended to tell users the view is actually
  * doing something while iframe is being loaded, which will take some time if users are in poor networks.
  *
  * @param playerView The YTPlayerView instance where the error has occurred.
- * @return A view object that will be displayed while YouTube iframe API is being loaded. 
+ * @return A view object that will be displayed while YouTube iframe API is being loaded.
  *         Pass nil to display no custom loading view. Default implementation returns nil.
  */
 - (nullable UIView *)playerViewPreferredInitialLoadingView:(nonnull YTPlayerView *)playerView;
@@ -514,6 +514,12 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
 - (float)playbackRate;
 
 /**
+ * Gets the custom playback rate. The default value is 1.0, which represents a video
+ * playing at normal speed. You can set your custom value include 0.378, 2.852 without limitation
+ */
+- (float)customPlaybackRate;
+
+/**
  * Sets the playback rate. The default value is 1.0, which represents a video
  * playing at normal speed. Other values may include 0.25 or 0.5 for slower
  * speeds, and 1.5 or 2.0 for faster speeds. To fetch a list of valid values for
@@ -525,6 +531,13 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
  * @param suggestedRate A playback rate to suggest for the player.
  */
 - (void)setPlaybackRate:(float)suggestedRate;
+
+/**
+ * Sets the custom playback rate. The default value is 1.0, which represents a video
+ * playing at normal speed. You can set your desire values include 3.174, 0.38, or anything without limitation
+ * @param suggestedRate A playback rate to suggest for the player.
+ */
+- (void)setCustomPlaybackRate:(float)suggestedRate;
 
 /**
  * Gets a list of the valid playback rates, useful in conjunction with
